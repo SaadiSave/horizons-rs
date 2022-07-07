@@ -2,5 +2,9 @@
 name = "horizons"
 version = "0.0.1-alpha"
 edition = "2021"
+description = "Rust API for JPL Horizons Ephemeris System"
+authors = ["Saadi Save"]
+license = "MIT"
+repository = "https://www.github.com/saadisave/horizons-rs.git"
 
 [dependencies]

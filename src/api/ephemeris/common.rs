@@ -177,6 +177,7 @@ mod tests {
                 now,
                 now + chrono::Duration::days(2),
             ))
+            .csv_format(true)
             .obj_data(false)
             .build()?;
 

@@ -67,6 +67,7 @@ impl Serialize for StepSize {
     }
 }
 
+#[repr(u8)]
 #[derive(Serialize, Debug, Clone, Copy, PartialEq, Eq)]
 pub enum EphemType {
     #[serde(rename = "O")]
@@ -77,6 +78,7 @@ pub enum EphemType {
     Vectors,
 }
 
+#[repr(u8)]
 #[derive(Serialize, Debug, Clone, Copy, PartialEq, Eq)]
 pub enum Format {
     #[serde(rename = "text")]
@@ -115,6 +117,7 @@ impl TimeSpec {
 }
 
 #[allow(non_camel_case_types)]
+#[repr(u8)]
 #[derive(Default, Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
 pub enum OutUnits {
     /// km/day
@@ -145,6 +148,7 @@ impl Serialize for OutUnits {
     }
 }
 
+#[repr(u8)]
 #[derive(Serialize, Default, Debug, Clone, Copy, PartialEq, Eq)]
 pub enum RefPlane {
     #[default]
@@ -156,6 +160,7 @@ pub enum RefPlane {
     BodyEquator,
 }
 
+#[repr(u8)]
 #[derive(Serialize, Default, Debug, Clone, Copy, PartialEq, Eq)]
 pub enum RefSystem {
     #[default]

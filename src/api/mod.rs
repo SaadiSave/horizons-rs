@@ -63,7 +63,7 @@ impl From<MajorBody> for Body {
 impl std::fmt::Display for Body {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
-            Body::MajorBody(b) => write!(f, "{}", u16::from(b)),
+            Body::MajorBody(b) => write!(f, "{}", u32::from(b)),
             Body::Custom(s) => f.write_str(s),
         }
     }
@@ -222,7 +222,7 @@ impl QueryBuilder<VectorsBuilder> {
 mod tests {
     use crate::{
         api::{
-            bodies::{BodyCodeError, MajorBody},
+            bodies::{InvalidBodyCode, MajorBody},
             ephemeris::{vectors::Correction, StepSizeUnit, TimeSpec},
             HzBool, Query,
         },
@@ -251,7 +251,7 @@ mod tests {
 
         assert_eq!(Ok(MajorBody::JupiterBary), MajorBody::try_from(5));
 
-        assert_eq!(Err(BodyCodeError(598)), MajorBody::try_from(598));
+        assert_eq!(Err(InvalidBodyCode(598)), MajorBody::try_from(598));
 
         Ok(())
     }

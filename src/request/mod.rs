@@ -2,6 +2,7 @@
 
 pub mod bodies;
 pub mod ephemeris;
+pub mod presets;
 
 use std::fmt::{Display, Formatter, Result as FmtResult};
 

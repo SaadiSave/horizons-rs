@@ -3,6 +3,8 @@
 pub mod bodies;
 pub mod ephemeris;
 
+use std::fmt::{Display, Formatter, Result as FmtResult};
+
 use bodies::MajorBody;
 use ephemeris::{
     common::{Common, CommonBuilder, CommonBuilderError},
@@ -60,8 +62,8 @@ impl From<MajorBody> for Body {
     }
 }
 
-impl std::fmt::Display for Body {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+impl Display for Body {
+    fn fmt(&self, f: &mut Formatter<'_>) -> FmtResult {
         match self {
             Body::MajorBody(b) => write!(f, "{}", u32::from(b)),
             Body::Custom(s) => f.write_str(s),
@@ -82,8 +84,8 @@ impl From<u16> for Site {
     }
 }
 
-impl std::fmt::Display for Site {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+impl Display for Site {
+    fn fmt(&self, f: &mut Formatter<'_>) -> FmtResult {
         match self {
             Site::Center => f.write_str("500"),
             Site::Custom(s) => write!(f, "{s}"),
@@ -221,7 +223,7 @@ impl QueryBuilder<VectorsBuilder> {
 #[cfg(test)]
 mod tests {
     use crate::{
-        api::{
+        request::{
             bodies::{InvalidBodyCode, MajorBody},
             ephemeris::{vectors::Correction, StepSizeUnit, TimeSpec},
             HzBool, Query,

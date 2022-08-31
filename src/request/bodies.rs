@@ -1,4 +1,3 @@
-use serde::Serialize;
 use thiserror::Error;
 
 #[repr(transparent)]
@@ -141,7 +140,7 @@ bodies! {
     }
 }
 
-impl Serialize for MajorBody {
+impl serde::Serialize for MajorBody {
     fn serialize<S>(&self, s: S) -> Result<S::Ok, S::Error>
     where
         S: serde::Serializer,

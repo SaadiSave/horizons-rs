@@ -1,6 +1,6 @@
 #![allow(clippy::module_name_repetitions)]
 
-use crate::api::{
+use crate::request::{
     ephemeris::{OutUnits, RefPlane},
     HzBool,
 };

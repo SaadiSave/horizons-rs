@@ -1,6 +1,6 @@
 #![allow(clippy::module_name_repetitions)]
 
-use crate::api::{
+use crate::request::{
     ephemeris::{EphemType, Format, RefSystem, TimeSpec},
     Center, Command, HzBool,
 };
@@ -153,7 +153,7 @@ impl Default for CommonBuilder {
 #[cfg(test)]
 mod tests {
     use crate::{
-        api::{
+        request::{
             bodies::MajorBody,
             ephemeris::{
                 common::{Common, CommonBuilder},

@@ -6,7 +6,7 @@ pub mod response;
 pub(crate) mod units;
 
 #[cfg(test)]
-pub(crate) type TestResult = Result<(), Box<dyn std::error::Error>>;
+pub(crate) type TestResult<T = ()> = Result<T, Box<dyn std::error::Error>>;
 
 mod macros;
 

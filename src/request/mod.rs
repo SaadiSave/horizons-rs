@@ -283,7 +283,7 @@ mod tests {
             "command=599&ephem_type=V&center=500%400&ref_system=ICRF&format=text\
             &obj_data=no&make_ephem=yes&csv_format=no&step_size=6h\
             &start_time=2022-08-28T00%3A00%3A00Z&stop_time=2022-08-30T00%3A00%3A00Z\
-            &vec_labels=yes&vec_delta_t=no&vec_corr=LT%2BS&out_units=km-s&ref_plane=E",
+            &vec_table=3&vec_labels=yes&vec_delta_t=no&vec_corr=LT%2BS&out_units=km-s&ref_plane=E",
             serde_urlencoded::to_string(query)?
         );
 

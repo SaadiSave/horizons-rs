@@ -49,6 +49,7 @@ pub enum Correction {
 
 #[derive(Serialize, Debug, Clone, PartialEq, Eq)]
 pub struct Vectors {
+    vec_table: TableFormat,
     vec_labels: HzBool,
     vec_delta_t: HzBool,
     vec_corr: Correction,
@@ -58,6 +59,7 @@ pub struct Vectors {
 
 #[derive(Debug, Clone, Copy)]
 pub struct VectorsBuilder {
+    vec_table: TableFormat,
     vec_labels: bool,
     vec_delta_t: bool,
     vec_corr: Correction,
@@ -68,6 +70,11 @@ pub struct VectorsBuilder {
 impl VectorsBuilder {
     pub fn new() -> Self {
         Self::default()
+    }
+
+    pub fn table_format(&mut self, table_format: TableFormat) -> &mut Self {
+        self.vec_table = table_format;
+        self
     }
 
     pub fn vec_labels(&mut self, vec_labels: bool) -> &mut Self {
@@ -97,6 +104,7 @@ impl VectorsBuilder {
 
     pub fn build(&self) -> Vectors {
         let &Self {
+            vec_table,
             vec_labels,
             vec_delta_t,
             vec_corr,
@@ -105,6 +113,7 @@ impl VectorsBuilder {
         } = self;
 
         Vectors {
+            vec_table,
             vec_labels: vec_labels.into(),
             vec_delta_t: vec_delta_t.into(),
             vec_corr,
@@ -117,6 +126,7 @@ impl VectorsBuilder {
 impl Default for VectorsBuilder {
     fn default() -> Self {
         Self {
+            vec_table: TableFormat::default(),
             vec_labels: true,
             vec_delta_t: false,
             vec_corr: Correction::default(),

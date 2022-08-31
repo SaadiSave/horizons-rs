@@ -87,6 +87,26 @@ pub enum Format {
     Json,
 }
 
+#[repr(transparent)]
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct TList(Vec<DateTime<Utc>>);
+
+impl Serialize for TList {
+    fn serialize<S>(&self, s: S) -> Result<S::Ok, S::Error>
+    where
+        S: Serializer,
+    {
+        s.serialize_str(
+            self.0
+                .iter()
+                .map(|s| s.to_rfc3339_opts(chrono::SecondsFormat::AutoSi, true))
+                .collect::<Vec<_>>()
+                .join(",")
+                .as_str(),
+        )
+    }
+}
+
 #[derive(Serialize, Debug, Clone, PartialEq, Eq)]
 #[serde(untagged)]
 pub enum TimeSpec {
@@ -95,7 +115,9 @@ pub enum TimeSpec {
         start_time: DateTime<Utc>,
         stop_time: DateTime<Utc>,
     },
-    List(Vec<DateTime<Utc>>),
+    List {
+        tlist: TList,
+    },
 }
 
 impl TimeSpec {
@@ -112,7 +134,9 @@ impl TimeSpec {
     }
 
     pub fn from_list(list: impl IntoIterator<Item = DateTime<Utc>>) -> Self {
-        Self::List(list.into_iter().collect())
+        Self::List {
+            tlist: TList(list.into_iter().collect()),
+        }
     }
 }
 
